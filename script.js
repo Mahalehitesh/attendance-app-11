@@ -3,12 +3,21 @@ function markAttendance() {
     const msg = document.getElementById("msg");
 
     if (name === "") {
-        msg.innerText = "⚠️ Please enter your name!";
+        msg.innerText = "⚠️ Enter your name!";
         msg.style.color = "red";
         return;
     }
 
     const now = new Date();
-    msg.innerHTML = `✅ ${name}, Attendance Marked <br> ⏰ ${now.toLocaleTimeString()}`;
-    msg.style.color = "#28a745";
+    const record = {
+        name: name,
+        time: now.toLocaleString()
+    };
+
+    let data = JSON.parse(localStorage.getItem("attendance")) || [];
+    data.push(record);
+    localStorage.setItem("attendance", JSON.stringify(data));
+
+    msg.innerHTML = `✅ ${name}, Attendance Saved!`;
+    msg.style.color = "green";
 }
