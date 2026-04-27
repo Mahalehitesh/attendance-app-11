@@ -1,12 +1,14 @@
-<script>
 function markAttendance() {
+    const name = document.getElementById("name").value;
     const msg = document.getElementById("msg");
 
-    const now = new Date();
-    const date = now.toLocaleDateString();
-    const time = now.toLocaleTimeString();
+    if (name === "") {
+        msg.innerText = "⚠️ Please enter your name!";
+        msg.style.color = "red";
+        return;
+    }
 
-    msg.innerHTML = `✅ Attendance Marked <br> 📅 ${date} ⏰ ${time}`;
+    const now = new Date();
+    msg.innerHTML = `✅ ${name}, Attendance Marked <br> ⏰ ${now.toLocaleTimeString()}`;
     msg.style.color = "#28a745";
 }
-</script>
